@@ -1,15 +1,18 @@
 const board = document.getElementById('board')
 const statusText = document.getElementById('status')
+const contador = document.getElementById('contador')
 
 let jogoAtivo = true
 let jogadorAtual = 'X'
 let celulas = Array(9).fill(null)
+let contadorText = 0
 
 function voltarJogo() {
     jogoAtivo = true
     jogadorAtual = 'X'
     celulas = Array(9).fill(null)
     statusText.textContent = `turno do jogador X`
+    contador.textContent = `numero de jogadas: ${contador}`
     criar()
 }
 
@@ -34,6 +37,7 @@ function clickCelula(e) {
     const index = e.target.dataset.index
 //    console.log(e)
 //    console.log(index)
+contadorText ++
 
     if (celulas[index] || !jogoAtivo) {
         return
@@ -51,7 +55,7 @@ function clickCelula(e) {
     } else {
         jogadorAtual = jogadorAtual === 'X' ? 'O' : 'X'
         statusText.textContent = `turno do jogador ${jogadorAtual}`
-        // statusText.textContent = "turno do jogador ${jogadorAtual}"
+        contador.textContent = `numero de jogadas: ${contadorText}`
     }
 }
 
